@@ -1,0 +1,12 @@
+.headerAndFooter {
+  @apply w-full h-24;
+}
+
+.explore::before,
+.takePhoto::before {
+  content: ">";
+  color: black;
+}
+
+.title {
+}

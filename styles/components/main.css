@@ -1,0 +1,13 @@
+.fontColor {
+  @apply text-fontGreen font-semibold;
+}
+.infoWidth {
+  /* width: 920px; */
+}
+.infoBorder {
+  border-left: 4px solid var(--fontColor);
+  padding: 10px;
+}
+.infoHover {
+  @apply transform transition hover:scale-105;
+}
