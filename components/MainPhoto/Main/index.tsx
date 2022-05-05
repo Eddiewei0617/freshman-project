@@ -2,17 +2,29 @@
 import Link from "next/link";
 import Image from "next/image";
 import { MainSTY } from "./style";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import cx from "classnames";
+import React from "react";
 
 export default function Main(props) {
   const { photodata, category, curations } = props;
+  const [check, setCheck] = React.useState(true);
 
   if (!photodata) return <p>loading</p>;
   const curation_no = photodata[0].no;
 
+  const handleOpen = () => {
+    setCheck(!check);
+  };
+
   return (
     <>
       <MainSTY>
+        <div className={cx({ " text-color": check })}>
+          <h1 onClick={handleOpen}>測試測試</h1>
+        </div>
+
+        {/* ------------------- */}
         <div className="py-4">
           <h6 className="fontColor text-sm">封面專題</h6>
           <div className="homeTitle">

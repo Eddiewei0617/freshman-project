@@ -44,8 +44,8 @@ export type TYPE_CURATION = {
   no: string;
   title: string;
   image_path: string;
-  main_image_path: string;
-  content_image_path;
+  main_image_path?: string;
+  content_image_path?;
   desp: string;
   article: Array<TYPE_ARTICLE>;
   curation?: any;

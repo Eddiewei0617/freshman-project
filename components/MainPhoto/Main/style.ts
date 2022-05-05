@@ -1,6 +1,11 @@
 import styled, { css } from "styled-components";
 
 export const MainSTY = styled.div`
+  .text-color {
+    color: red;
+    cursor: pointer;
+  }
+
   .homeTitle {
     display: flex;
 
@@ -104,6 +109,60 @@ export const ArticleSTY = styled.div`
             color: ${({ theme }) => theme.XinMedia.DullCyan};
           }
         }
+      }
+    }
+  }
+`;
+
+// Article Navbar ---------------------------
+
+// const leftA = css`
+//   left: 4%;
+// `;
+// const rightA = css`
+//   right: 4%;
+// `;
+// ${({ lenth }) => lenth <= 3 && noSlick}
+/* ${(props) => (props.isCheck === true ? "250px" : "40px")}; */
+
+export const NavSTY = styled.div<{
+  arrow?: { arrowLeft: string; arrowRight: string };
+}>`
+  display: flex;
+  justify-content: center;
+  position: relative;
+
+  // 左右箭頭
+  > .arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 28px;
+    cursor: pointer;
+    &.left {
+      left: 4%;
+    }
+    &.right {
+      right: 4%;
+    }
+  }
+
+  // 標題們
+  > div {
+    display: flex;
+    margin: 10px;
+    gap: 20px;
+    width: 80%;
+    .singleArticle {
+      display: flex;
+      border-right: 2px solid grey;
+      padding-right: 10px;
+      h1 {
+        font-size: 40px;
+        margin-right: 10px;
+      }
+      p {
+        font-size: 20px;
       }
     }
   }

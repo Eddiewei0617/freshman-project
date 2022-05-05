@@ -8,19 +8,20 @@ import Layout from "@root/components/Layout";
 import Title from "../../../components/Title";
 import { client } from "../../_app";
 import { Article, Curations } from "@graphql/_pages/album";
-import { TYPE_ARTICLE, TYPE_CURATIONS } from "@typings/graphql";
+import { TYPE_ARTICLE, TYPE_CURATION } from "@typings/graphql";
 import ArticleDetail from "../../../components/MainPhoto/Main/ArticleDetail";
+import ArticleNav from "@components/MainPhoto/Main/ArticleNav";
 
 interface PAGE_TYPE {
   article: TYPE_ARTICLE;
-  data: TYPE_CURATIONS[];
+  data: TYPE_CURATION[];
 }
 
 const ArticlePage = (props: PAGE_TYPE) => {
   const { article } = props;
   const router = useRouter();
 
-  const [curationsData, setCurationsData] = useState<TYPE_CURATIONS[]>([]);
+  const [curationsArr, setCurationsArr] = useState<TYPE_CURATION[]>([]);
   const { data, loading, refetch } = useQuery(Curations);
   // 當loading是false是設定狀態 (原本不是陣列，我把資料放進陣列)
   // useEffect(() => {
@@ -28,6 +29,19 @@ const ArticlePage = (props: PAGE_TYPE) => {
   //     setCurationsData((prev) => [...prev, data]);
   //   }
   // }, [loading]);
+  console.log("article", article);
+  console.log("data", data);
+  useEffect(() => {
+    if (data) {
+      setCurationsArr(data.curations.data.edges);
+    }
+  }, [data]);
+  console.log("curationsArr", curationsArr);
+
+  const arrow: { arrowLeft: string; arrowRight: string } = {
+    arrowLeft: "left",
+    arrowRight: "right",
+  };
 
   return (
     <>
@@ -36,6 +50,7 @@ const ArticlePage = (props: PAGE_TYPE) => {
       </Head>
       <Layout>
         <Title category={"攝影"}></Title>
+        <ArticleNav curationsArr={curationsArr} arrow={arrow} />
         <ArticleDetail article={article} data={data} />
       </Layout>
     </>
