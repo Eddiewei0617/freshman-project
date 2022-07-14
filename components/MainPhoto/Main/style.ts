@@ -34,7 +34,7 @@ export const MainSTY = styled.div`
 `;
 
 export const ArticleSTY = styled.div`
-  margin: 60px;
+  margin: 100px 60px;
   > .title {
     display: flex;
     justify-content: space-between;
@@ -66,8 +66,9 @@ export const ArticleSTY = styled.div`
 
   .tag {
     display: flex;
+    flex-wrap: wrap;
     p {
-      margin: 10px;
+      margin: 6px;
       padding: 5px 10px;
       text-align: center;
       border: 2px solid grey;
@@ -127,36 +128,48 @@ export const ArticleSTY = styled.div`
 
 export const NavSTY = styled.div<{
   arrow?: { arrowLeft: string; arrowRight: string };
+  slideIndex?: number;
 }>`
   display: flex;
-  justify-content: center;
-  position: relative;
+  margin: 20px;
 
   // 左右箭頭
   > .arrow {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
     font-size: 28px;
+    margin: 20px auto;
     cursor: pointer;
-    &.left {
+    z-index: 2;
+    /* &.left {
       left: 4%;
     }
     &.right {
       right: 4%;
-    }
+    } */
   }
 
   // 標題們
-  > div {
+  .sliderContainer {
     display: flex;
-    margin: 10px;
-    gap: 20px;
-    width: 80%;
+    flex-direction: row;
+    width: 900px;
+    height: 80px;
+    overflow-x: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+  }
+  .sliderContainer::-webkit-scrollbar {
+    display: none;
+  }
+  .slider {
+    display: flex;
+
     .singleArticle {
       display: flex;
-      border-right: 2px solid grey;
-      padding-right: 10px;
+      border-left: 2px solid grey;
+      padding-left: 10px;
+      width: 300px;
+
       h1 {
         font-size: 40px;
         margin-right: 10px;
@@ -164,6 +177,23 @@ export const NavSTY = styled.div<{
       p {
         font-size: 20px;
       }
+
+      @keyframes slidein {
+        from {
+          transform: translateX(0);
+        }
+        to {
+          transform: translateX(-1000px);
+        }
+      }
+
+      /* &[type="${(prop) => prop.slideIndex}"],
+      &[type="${(prop) => prop.slideIndex + 1}"],
+      &[type="${(prop) => prop.slideIndex + 2}"] {
+        display: flex;
+        animation: slidein 4s ease;
+      
+      } */
     }
   }
 `;

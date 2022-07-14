@@ -12,6 +12,7 @@ const ArticleDetail = (props) => {
       setCurations(data);
     }
   }, [data]);
+  console.log("article", article);
 
   return (
     <ArticleSTY>
@@ -20,11 +21,11 @@ const ArticleDetail = (props) => {
         <p>1</p>
       </div>
       <div className="content">
-        <p
+        <div
           dangerouslySetInnerHTML={{
             __html: article.content, // 'html string'
           }}
-        ></p>
+        ></div>
       </div>
       <div className="tag">
         {article.tags.map((v, i) => {

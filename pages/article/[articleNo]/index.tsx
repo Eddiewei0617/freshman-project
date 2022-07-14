@@ -20,6 +20,7 @@ interface PAGE_TYPE {
 const ArticlePage = (props: PAGE_TYPE) => {
   const { article } = props;
   const router = useRouter();
+  console.log("article", article);
 
   const [curationsArr, setCurationsArr] = useState<TYPE_CURATION[]>([]);
   const { data, loading, refetch } = useQuery(Curations);
@@ -29,19 +30,22 @@ const ArticlePage = (props: PAGE_TYPE) => {
   //     setCurationsData((prev) => [...prev, data]);
   //   }
   // }, [loading]);
-  console.log("article", article);
-  console.log("data", data);
+
   useEffect(() => {
     if (data) {
       setCurationsArr(data.curations.data.edges);
     }
   }, [data]);
-  console.log("curationsArr", curationsArr);
 
   const arrow: { arrowLeft: string; arrowRight: string } = {
     arrowLeft: "left",
     arrowRight: "right",
   };
+
+  let curationTitle;
+  if (curationsArr[0]?.article.length > 0) {
+    curationTitle = curationsArr[0].article;
+  }
 
   return (
     <>
@@ -50,7 +54,11 @@ const ArticlePage = (props: PAGE_TYPE) => {
       </Head>
       <Layout>
         <Title category={"攝影"}></Title>
-        <ArticleNav curationsArr={curationsArr} arrow={arrow} />
+        <ArticleNav
+          curationsArr={curationsArr}
+          arrow={arrow}
+          curationTitle={curationTitle}
+        />
         <ArticleDetail article={article} data={data} />
       </Layout>
     </>
@@ -61,7 +69,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   // 取得單一article資料
   const articleResult = await client.query({
     query: Article,
-    variables: { no: ctx.query.articleNo },
+    // variables: { no: ctx.query.articleNo },
   });
   // .catch((err) => {
   //   console.log("err->>>", err);

@@ -30,6 +30,7 @@ export function Photos(props) {
     const articleArr: TYPE_ARTICLE[] = [];
     for (let i = count; i < count + 6; i++) {
       articleArr.push(data.curation.data.article[i]);
+      setCount(count + 6);
     }
     const newArticle = article.concat(articleArr);
     setArticle(newArticle);

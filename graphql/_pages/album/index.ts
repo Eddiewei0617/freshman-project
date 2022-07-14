@@ -70,8 +70,10 @@ export const Curation = gql`
 
 // 抓文章列表+內容
 export const Article = gql`
-  query article($no: String!) {
-    article(filter: { no: $no, author_type: local }) {
+  query article {
+    article(
+      filter: { local_subcategory: "199182-pi_chiu", author_type: local }
+    ) {
       code
       msg
       data {
@@ -86,6 +88,7 @@ export const Article = gql`
           url
           urlPath
         }
+        local_subcategory
       }
     }
   }

@@ -2,7 +2,12 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["stage-ii.xinmedia.com", "buzzorange.com", "4.bp.blogspot.com"],
+    domains: [
+      "stage-ii.xinmedia.com",
+      "buzzorange.com",
+      "4.bp.blogspot.com",
+      "pic.pimg.tw",
+    ],
   },
 };
 
