@@ -69,7 +69,7 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   // 取得單一article資料
   const articleResult = await client.query({
     query: Article,
-    // variables: { no: ctx.query.articleNo },
+    variables: { local_subcategory: ctx.query.articleNo },
   });
   // .catch((err) => {
   //   console.log("err->>>", err);

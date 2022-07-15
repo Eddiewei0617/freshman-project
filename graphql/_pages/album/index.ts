@@ -70,14 +70,15 @@ export const Curation = gql`
 
 // 抓文章列表+內容
 export const Article = gql`
-  query article {
+  query article($local_subcategory: String!) {
     article(
-      filter: { local_subcategory: "199182-pi_chiu", author_type: local }
+      filter: { local_subcategory: $local_subcategory, author_type: local }
     ) {
       code
       msg
       data {
         id
+        no
         pv
         title
         content

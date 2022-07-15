@@ -25,7 +25,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 // 設定要索取資料的api網址
 const link = from([
   errorLink,
-  new HttpLink({ uri: "https://upanel.xinmedia.com/graphql/" }),
+  new HttpLink({ uri: "https://uupanel.xinmedia.com/graphql/" }),
 ]);
 
 // 創造一個apollo client
