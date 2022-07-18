@@ -70,9 +70,13 @@ export const Curation = gql`
 
 // 抓文章列表+內容
 export const Article = gql`
-  query article($local_subcategory: String!) {
+  query article($no: String, $local_subcategory: String) {
     article(
-      filter: { local_subcategory: $local_subcategory, author_type: local }
+      filter: {
+        no: $no
+        local_subcategory: $local_subcategory
+        author_type: local
+      }
     ) {
       code
       msg
